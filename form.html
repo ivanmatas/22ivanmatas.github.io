@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Team Renewal Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+</head>
+
+<body id="main_body">
+<header id="header" role="banner">
+  <nav class="navbar navbar-white animated-dropdown ttb-dropdown" role="navigation">
+    <div class="navbar-inner sticky-menu">
+      <div class="container">
+        <div class="navbar-header">
+          <img src="https://harvard-innovation-labs.github.io/input_form_for_guests/media/ilab_logo.png">
+        </div><!-- End .navbar-header -->
+      </div><!-- /.container -->
+    </div><!-- End .navbar-inner -->
+  </nav>
+</header><!-- End #header -->
+
+
+<div id="form_container">
+  <h2>Team Renewal Form</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 form">
+        <form action="" id="form">
+          <div class="form-group" id="team-name-form">
+            <label for="team_name" class="borderize">Team Name</label>
+            <div class="input-group">
+              <input type="text" class="form-control form-control-md" id="team_name" required>
+              <button href="#" id="validate" class="btn btn-info btn-md bg-teal">
+                <i class="fas fa-check"> Validate</i>
+              </button>
+            </div>
+          </div>
+
+          <div id="afterValidation">
+            <hr>
+            <div class="form-group">
+              <label for="team_description" class="borderize">Team Description</label>
+              <textarea class="form-control" id="team_description" rows="3" required disabled></textarea>
+            </div>
+
+            <div class="form-group" id="milestones">
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+              <label class="borderize">Applying For Grant?</label>
+
+              <fieldset id="group1" required>
+                <input type="radio" id="applying_for_grant_yes" value="true" name="applying_for_grant">
+                <label class="form-check-label" for="applying_for_grant_yes">Yes</label>
+                <input type="radio" id="applying_for_grant_no" value="false" name="applying_for_grant" checked>
+                <label class="form-check-label" for="applying_for_grant_no">No</label>
+              </fieldset>
+            </div>
+
+            <div class="form-group">
+              <label for="grant_amount" class="borderize">How Much Are You Applying For?</label>
+              <input type="number" class="form-control" id="grant_amount" disabled>
+            </div>
+            <div class="form-group">
+              <label for="proceeds_usage_explanation" class="borderize">How Will You Use The Proceeds?</label>
+              <textarea class="form-control" id="proceeds_usage_explanation" rows="3" disabled></textarea>
+            </div>
+
+            <button class="btn btn-md btn-success bg-teal" id="renewal_form_submit" type="submit">Submit</button>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="custom.js"></script>
+</body>
+</html>
