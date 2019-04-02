@@ -44,7 +44,6 @@ function populate_form(response) {
   }
 
   if (teamData.milestones.length < 5) {
-    console.log(teamData.milestones.length);
     for (i = teamData.milestones.length; i < 5; i++) {
       generate_milestone('', i + 1)
     }
@@ -100,7 +99,6 @@ function submitForm(event) {
   };
 
   jsonData = setJsonDataForRequest();
-  console.log(jsonData);
   xhr.send(JSON.stringify(jsonData));
 }
 
