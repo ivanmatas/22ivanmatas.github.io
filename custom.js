@@ -15,7 +15,8 @@ function fetchTeamData(event) {
     return;
   }
 
-  var url = "http://localhost:3000/website/team-data/" + encodeURI(teamName);
+  var url = "https://tapstage.herokuapp.com/website/team-data/" + encodeURI(teamName);
+  // var url = "http://localhost:3000/website/team-data/" + encodeURI(teamName);
 
   var xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -84,7 +85,8 @@ function submitForm(event) {
   event.preventDefault();    //stop form from submitting
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:3000/website/create-team-renewal/", true);
+  xhr.open("POST", "https://tapstage.herokuapp.com/website/create-team-renewal/", true);
+  // xhr.open("POST", "http://localhost:3000/website/create-team-renewal/", true);
   xhr.setRequestHeader('Content-Type', 'application/json');
 
   xhr.onload = function () {
