@@ -1,6 +1,26 @@
-document.getElementById("validate").addEventListener("click", fetchTeamData);
+var validationForm = document.getElementById("validationForm");
+validationForm.addEventListener("submit", fetchTeamData, false);
 document.getElementById("applying_for_grant_yes").addEventListener("click", enableGrantFields);
 document.getElementById("applying_for_grant_no").addEventListener("click", disableGrantFields);
+
+$('.team-names-ajax').select2({
+  placeholder: "Search for a team name",
+  minimumInputLength: 2,
+  ajax: {
+    data: null,
+    url: function () {
+      return 'https://tapstage.herokuapp.com/website/team-names/' + encodeURI($(".select2-search__field").val())
+      // return 'http://localhost:3000/website/team-names/' + encodeURI($(".select2-search__field").val())
+    },
+    processResults: function (data) {
+      var results = $.map(data, function (response) {
+        return {"text": response[1], "id": response[0]}
+      });
+      return {results: results};
+    },
+    dataType: 'json'
+  }
+});
 
 var team_id = null;
 
@@ -10,13 +30,14 @@ form.addEventListener("submit", submitForm, false);
 function fetchTeamData(event) {
   event.preventDefault();
 
-  var teamName = $("#team_name").val();
-  if (teamName.length === 0) {
+  var teamName = $("#select2-team_name-container").text();
+  var teamLeadEmail = $("#team_lead_email").val();
+  if (teamName.length === 0 || teamLeadEmail === 0) {
     return;
   }
 
-  var url = "https://tapstage.herokuapp.com/website/team-data/" + encodeURI(teamName);
-  // var url = "http://localhost:3000/website/team-data/" + encodeURI(teamName);
+  var url = "https://tapstage.herokuapp.com/website/team-data/" + encodeURI(teamName) + '/' + teamLeadEmail;
+  // var url = "http://localhost:3000/website/team-data/" + encodeURI(teamName) + '/' + teamLeadEmail;
 
   var xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -38,21 +59,28 @@ function populate_form(response) {
   $("#team_name").val(teamData.team_name);
   $("#team_description").prop("disabled", false).val(teamData.team_description);
   team_id = teamData.team_id;
-  $("#milestones").prepend('<h4 class="borderize"> Previous Team Milestones</h4>');
+  $("#milestones").prepend('<h4 class="borderize">Team Milestones</h4>');
   for (var i = 0; i < teamData.milestones.length; i++) {
-    generate_milestone(teamData.milestones[i], i + 1)
+    generate_current_milestone(teamData.milestones[i], i + 1);
+    generate_new_milestone(i + 1)
   }
 
   if (teamData.milestones.length < 5) {
     for (i = teamData.milestones.length; i < 5; i++) {
-      generate_milestone('', i + 1)
+      generate_new_milestone(i + 1)
     }
   }
 }
 
-function generate_milestone(milestoneText, number) {
-  var milestone_html = '<label for="team_description">Milestone ' + number + '</label>\n' +
-    '  <textarea class="form-control milestones" id="milestone_' + number + '" rows="3" required>' + milestoneText + '</textarea>';
+function generate_current_milestone(milestoneText, number) {
+  var milestone_html = '<label for="team_description">Current Milestone ' + number + '</label>\n' +
+    '  <textarea class="form-control" id="milestone_' + number + '" rows="3" disabled>' + milestoneText + '</textarea>';
+  $("#milestones").append(milestone_html)
+}
+
+function generate_new_milestone(number) {
+  var milestone_html = '<label for="team_description">New Milestone ' + number + '</label>\n' +
+    '  <textarea class="form-control milestones" id="milestone_' + number + '" rows="3" placeholder="Add text for new Milestone"></textarea><br>';
   $("#milestones").append(milestone_html)
 }
 
@@ -84,8 +112,10 @@ function submitForm(event) {
   event.preventDefault();    //stop form from submitting
 
   var xhr = new XMLHttpRequest();
+
   xhr.open("POST", "https://tapstage.herokuapp.com/website/create-team-renewal/", true);
   // xhr.open("POST", "http://localhost:3000/website/create-team-renewal/", true);
+
   xhr.setRequestHeader('Content-Type', 'application/json');
 
   xhr.onload = function () {
@@ -128,7 +158,7 @@ function setJsonDataForRequest() {
       team_renewal: {
         team_id: team_id,
         is_applying_for_grant: is_applying_for_grant,
-        wanted_grant_amount: grant_amount,
+        requested_grant: grant_amount,
         proceeds_usage_explanation: proceeds_usage_explanation,
       },
       milestones: milestoneJsonCollection,

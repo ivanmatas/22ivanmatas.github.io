@@ -7,18 +7,18 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css">
 
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-          crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
           integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
           crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
           integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
           crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
 
 <body id="main_body">
@@ -40,17 +40,25 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 form">
-        <form action="" id="form">
+        <form action="" id="validationForm">
           <div class="form-group" id="team-name-form">
             <label for="team_name" class="borderize">Team Name</label>
             <div class="input-group">
-              <input type="text" class="form-control form-control-md" id="team_name" required>
-              <button href="#" id="validate" class="btn btn-info btn-md bg-teal">
-                <i class="fas fa-check"> Validate</i>
-              </button>
+              <select class="team-names-ajax form-control" id="team_name" required></select>
             </div>
           </div>
+          <div class="form-group">
+            <label for="team_lead_email" class="borderize">Team Lead Email</label>
+            <div class="input-group">
+              <input type="email" class="form-control form-control-md" id="team_lead_email" required>
+            </div>
+          </div>
+          <button id="validate" class="btn btn-info btn-md bg-teal">
+            <i class="fas fa-check"> Validate</i>
+          </button>
+        </form>
 
+        <form action="" id="form">
           <div id="afterValidation">
             <hr>
             <div class="form-group">
