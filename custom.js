@@ -122,6 +122,7 @@ function submitForm(event) {
     if (xhr.status >= 200 && xhr.status < 300) {
       initialize_alert('Form was successfully submitted!', 'success', 'form', true);
       $("#afterValidation").hide();
+      $("#validationForm").hide();
     } else {
       initialize_alert(xhr.response, 'danger', 'form', true);
       $("#afterValidation").hide();
