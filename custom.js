@@ -45,6 +45,7 @@ function fetchTeamData(event) {
       $("#validate").prop("disabled", true);
       $("#afterValidation").show();
       populate_form(xhr.response);
+      location.href = "#afterValidation";
     } else {
       initialize_alert(xhr.response, 'danger', 'team-name-form');
     }
