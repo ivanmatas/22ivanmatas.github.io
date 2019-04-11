@@ -45,7 +45,8 @@ function fetchTeamData(event) {
       $("#validate").prop("disabled", true);
       $("#afterValidation").show();
       populate_form(xhr.response);
-      location.href = "#afterValidation";
+      // location.href = "#afterValidation";
+      scrollToTargetAdjusted()
     } else {
       initialize_alert(xhr.response, 'danger', 'team-name-form');
     }
@@ -168,4 +169,21 @@ function setJsonDataForRequest() {
     };
 
   return jsonData
+}
+
+
+function scrollToTargetAdjusted(){
+  var element = document.getElementById('afterValidation');
+  var headerOffset = 0;
+
+  if($('.main')[0]){
+    headerOffset = $('.main').height();
+  }
+  var elementPosition = element.getBoundingClientRect().top;
+  var offsetPosition = elementPosition - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: "smooth"
+  });
 }
