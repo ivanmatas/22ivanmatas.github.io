@@ -9,7 +9,8 @@ $('.team-names-ajax').select2({
   ajax: {
     data: null,
     url: function () {
-      return 'https://tapstage.herokuapp.com/website/team-names/' + encodeURI($(".select2-search__field").val())
+      return 'https://doorman-backend.herokuapp.com/website/team-names/' + encodeURI($(".select2-search__field").val())
+      // return 'https://tapstage.herokuapp.com/website/team-names/' + encodeURI($(".select2-search__field").val())
       // return 'http://localhost:3000/website/team-names/' + encodeURI($(".select2-search__field").val())
     },
     processResults: function (data) {
@@ -36,7 +37,8 @@ function fetchTeamData(event) {
     return;
   }
 
-  var url = "https://tapstage.herokuapp.com/website/team-data/" + encodeURI(teamName) + '/' + teamLeadEmail;
+  var url = "https://doorman-backend.herokuapp.com/website/team-data/" + encodeURI(teamName) + '/' + teamLeadEmail;
+  // var url = "https://tapstage.herokuapp.com/website/team-data/" + encodeURI(teamName) + '/' + teamLeadEmail;
   // var url = "http://localhost:3000/website/team-data/" + encodeURI(teamName) + '/' + teamLeadEmail;
 
   var xhr = new XMLHttpRequest();
@@ -115,7 +117,8 @@ function submitForm(event) {
 
   var xhr = new XMLHttpRequest();
 
-  xhr.open("POST", "https://tapstage.herokuapp.com/website/create-team-renewal/", true);
+  xhr.open("POST", "https://doorman-backend.herokuapp.com/website/create-team-renewal/", true);
+  // xhr.open("POST", "https://tapstage.herokuapp.com/website/create-team-renewal/", true);
   // xhr.open("POST", "http://localhost:3000/website/create-team-renewal/", true);
 
   xhr.setRequestHeader('Content-Type', 'application/json');
