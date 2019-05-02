@@ -129,7 +129,11 @@ function submitForm(event) {
       $("#afterValidation").hide();
       $("#validationForm").hide();
     } else {
-      initialize_alert(xhr.response, 'danger', 'form', true);
+      let messages_object = xhr.response.split(';');
+      for(message in messages_object) {
+        console.log(messages_object[message]);
+        initialize_alert(messages_object[message], 'danger', 'form', true);
+      }
       $("#afterValidation").hide();
       $("#validate").prop("disabled", false);
       $("#select2-team_name-container").text('')
